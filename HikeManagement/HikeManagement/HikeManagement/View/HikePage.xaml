@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HikeManagement.View.HikePage"
+             Title="Hike Management">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add"
+                     Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+
+        <CollectionView x:Name="myCollectionView"
+                        SelectionMode="Single"
+                        Margin="20,5,20,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                   BackgroundColor="LightBlue"
+                                   CommandParameter="{Binding .}"
+                                   Invoked="SwipeItem_Invoked"/>
+                            </SwipeItems>                        
+                        </SwipeView.RightItems>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                   BackgroundColor="OrangeRed"
+                                   CommandParameter="{Binding .}"
+                                   Invoked="SwipeItem_Invoked_1"/>    
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>                        
+                        <Label Text="{Binding Name}"
+                                Grid.Row="0" 
+                                Grid.RowSpan="1"
+                                VerticalOptions="CenterAndExpand"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                TextTransform="Uppercase"/>
+                        <Label Text="{Binding Location}"
+                                Grid.Row="1" 
+                               Grid.RowSpan="1"
+                                TextTransform="Uppercase"/>
+                    </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
